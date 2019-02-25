@@ -5,10 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VectorOperations {
-    class Vector {
+    public class Vector {
         internal double x;
         internal double y;
         internal double z;
+
+        public double X { get { return x; } }
+        public double Y { get { return y; } }
+        public double Z { get { return z; } }
         
         public Vector() {
             x = 0;
