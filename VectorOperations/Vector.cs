@@ -46,18 +46,12 @@ namespace VectorOperations {
             return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
-        public static double operator *(Vector a, Vector b) {
-            return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
-        }
-
-        public static Vector operator *(int a, Vector b) {
+        public static Vector operator *(double a, Vector b) {
             return new Vector(a * b.x, a * b.y, a * b.z);
         }
 
-        public static Vector operator *(Vector b, int a) {
+        public static Vector operator *(Vector b, double a) {
             return new Vector(a * b.x, a * b.y, a * b.z);
         }
-
-
     }
 }
