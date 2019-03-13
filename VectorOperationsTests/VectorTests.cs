@@ -3,22 +3,38 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VectorOperations;
+using System.IO;
+using System.Reflection;
 
 namespace VectorOperationsTests {
     [TestClass]
     public class VectorTests {
+        public TestContext TestContext { get; set; }
 
         [TestMethod]
+        [DataSource(
+            "Microsoft.VisualStudio.TestTools.DataSource.CSV",
+            @"D:\github\vector-operations\VectorOperationsTests\data.csv", 
+            "data#csv", 
+            DataAccessMethod.Sequential),
+            DeploymentItem("data.csv")]
         public void Adding() {
-            Vector VECTOR_1 = new Vector(1, 2, 3);
-            Vector VECTOR_2 = new Vector(4.5, 5.66666, 7);
+            Vector VECTOR_1 = new Vector(
+                Convert.ToDouble(TestContext.DataRow["a1"]),
+                Convert.ToDouble(TestContext.DataRow["b1"]),
+                Convert.ToDouble(TestContext.DataRow["c1"])
+                );
+            Vector VECTOR_2 = new Vector(
+                Convert.ToDouble(TestContext.DataRow["a2"]),
+                Convert.ToDouble(TestContext.DataRow["b2"]),
+                Convert.ToDouble(TestContext.DataRow["c2"])
+                );
 
             Vector VECTOR_3 = VECTOR_1 + VECTOR_2;
 
-            //zapytac sie jak to zmienic
-            Assert.AreEqual(5.5, VECTOR_3.X);
-            Assert.AreEqual(7.66666, VECTOR_3.Y);
-            Assert.AreEqual(10, VECTOR_3.Z);
+            Assert.AreEqual(Convert.ToDouble(TestContext.DataRow["a3"]), VECTOR_3.X);
+            Assert.AreEqual(Convert.ToDouble(TestContext.DataRow["b3"]), VECTOR_3.Y);
+            Assert.AreEqual(Convert.ToDouble(TestContext.DataRow["c3"]), VECTOR_3.Z);
         }
 
         [TestMethod]
@@ -28,7 +44,6 @@ namespace VectorOperationsTests {
 
             Vector VECTOR_3 = VECTOR_1 - VECTOR_2;
 
-            //zapytac sie jak to zmienic
             Assert.AreEqual(-3.5, VECTOR_3.X);
             Assert.AreEqual(-3.5, VECTOR_3.Y);
             Assert.AreEqual(-4, VECTOR_3.Z);
@@ -41,7 +56,6 @@ namespace VectorOperationsTests {
 
             Vector VECTOR_3 = value * VECTOR_1;
 
-            //zapytac sie jak to zmienic
             Assert.AreEqual(5.34, VECTOR_3.X);
             Assert.AreEqual(10.68, VECTOR_3.Y);
             Assert.AreEqual(16.02, VECTOR_3.Z);
@@ -54,7 +68,6 @@ namespace VectorOperationsTests {
 
             Vector VECTOR_3 = VECTOR_1 * value;
 
-            //zapytac sie jak to zmienic
             Assert.AreEqual(5.34, VECTOR_3.X);
             Assert.AreEqual(10.68, VECTOR_3.Y);
             Assert.AreEqual(16.02, VECTOR_3.Z);
