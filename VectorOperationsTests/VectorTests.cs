@@ -7,10 +7,17 @@ using System.IO;
 using System.Reflection;
 
 namespace VectorOperationsTests {
+
+    /// <summary>
+    /// Testy jednostkowe klasy Vector.
+    /// </summary>
     [TestClass]
     public class VectorTests {
         public TestContext TestContext { get; set; }
 
+        /// <summary>
+        /// Testowanie operacji dodawania wektorów.
+        /// </summary>
         [TestMethod]
         [DataSource(
             "Microsoft.VisualStudio.TestTools.DataSource.CSV",
@@ -37,6 +44,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(Convert.ToDouble(TestContext.DataRow["c3"]), VECTOR_3.Z);
         }
 
+        /// <summary>
+        /// Testowanie operacji odejmowania wektorów.
+        /// </summary>
         [TestMethod]
         public void Substracting() {
             Vector VECTOR_1 = new Vector(1, 2, 3);
@@ -49,8 +59,12 @@ namespace VectorOperationsTests {
             Assert.AreEqual(-4, VECTOR_3.Z);
         }
 
+        /// <summary>
+        /// Testowanie operacji mnożenia wektora przez skalar (1 - liczba całkowita).
+        /// </summary>
         [TestMethod]
         public void Multiplying_1() {
+            //poprawic wartosci!
             Vector VECTOR_1 = new Vector(1, 2, 3);
             double value = 5.34;
 
@@ -61,6 +75,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(16.02, VECTOR_3.Z);
         }
 
+        /// <summary>
+        /// Testowanie operacji mnożenia wektorów (2 - liczba zmiennoprzecinkowa).
+        /// </summary>
         [TestMethod]
         public void Multiplying_2() {
             Vector VECTOR_1 = new Vector(1, 2, 3);
@@ -73,6 +90,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(16.02, VECTOR_3.Z);
         }
 
+        /// <summary>
+        /// Testowanie konstruktora (1).
+        /// </summary>
         [TestMethod]
         public void CheckingConstructor_1() {
             Vector vector = new Vector();
@@ -82,6 +102,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(0, vector.Z);
         }
 
+        /// <summary>
+        /// Testowanie konstruktora (2).
+        /// </summary>
         [TestMethod]
         public void CheckingConstructor_2() {
             Vector vector = new Vector(1.5);
@@ -91,6 +114,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(0, vector.Z);
         }
 
+        /// <summary>
+        /// Testowanie konstruktora (3).
+        /// </summary>
         [TestMethod]
         public void CheckingConstructor_3() {
             Vector vector = new Vector(1.5, 6.6);
@@ -100,6 +126,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(0, vector.Z);
         }
 
+        /// <summary>
+        /// Testowanie kopiowania głębokiego.
+        /// </summary>
         [TestMethod]
         public void CopyingVector() {
             Vector VECTOR_1 = new Vector(1, 2, 3);
