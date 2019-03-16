@@ -78,7 +78,6 @@ namespace VectorOperations {
                 return Math.Cos(cosinusValue);
             }
             else throw new ArgumentException();
-
         }
 
         /// <summary>
