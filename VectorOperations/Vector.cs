@@ -11,9 +11,7 @@ namespace VectorOperations {
     /// Is it possible to create a vector in two-dimensional space (x, y, 0) and one-dimensional space (x, 0, 0).
     /// </summary>
     public class Vector<T> {
-        internal T x { get; set; }
-        internal T y { get; set; }
-        internal T z { get; set; }
+        public T x,y,z;
 
         /// <summary> 
         /// Vector constructor in a three-dimensional space.
