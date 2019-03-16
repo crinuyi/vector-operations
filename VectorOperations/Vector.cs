@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace VectorOperations {
 
     /// <summary>
-    /// Klasa implementująca wektor w przestrzeni trójwymiarowej.
-    /// Istnieje możliwość utworzenia wektoru w przestrzeni dwuwymiarowej (x, y, 0) oraz jednowymiarowej (x, 0, 0).
+    /// Class that implements a vector in a in three-dimensional space.
+    /// Is it possible to create a vector in two-dimensional space (x, y, 0) and one-dimensional space (x, 0, 0).
     /// </summary>
     public class Vector<T> {
         internal T x { get; set; }
@@ -16,7 +16,7 @@ namespace VectorOperations {
         internal T z { get; set; }
 
         /// <summary> 
-        /// Konstruktor wektora w przestrzeni trójwymiarowej. 
+        /// Vector constructor in a three-dimensional space.
         /// </summary>
         public Vector(T x, T y, T z) {
             this.x = x;
@@ -25,7 +25,7 @@ namespace VectorOperations {
         }
 
         /// <summary> 
-        /// Tworzenie kopii głębokiej wektora. 
+        /// Creating deep copy of given vector.
         /// </summary>
         public Vector(Vector<T> prototype) {
             x = prototype.x;

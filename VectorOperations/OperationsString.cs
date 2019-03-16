@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VectorOperations {
-    class OperationsString : IOperations<string>
-    {
+    class OperationsString : IOperations<string> {
         /// <summary>
-        /// Operation of adding vectors. Converts values of vectors to double and add them.
+        /// Converts values of given vectors to double and add them.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
@@ -16,8 +15,7 @@ namespace VectorOperations {
         public Vector<string> Add(Vector<string> a, Vector<string> b) {
             double x1, y1, z1, x2, y2, z2;
 
-            try
-            {
+            try {
                 x1 = double.Parse(a.x);
                 y1 = double.Parse(a.y);
                 z1 = double.Parse(a.z);
@@ -39,37 +37,31 @@ namespace VectorOperations {
         }
 
         /// <summary>
-        /// Converts values of vectors to double and count the angle between them.
+        /// Converts values of given vectors to double and calculate the angle between them.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
         /// <exception cref="ArgumentException">Thrown when given vectors are (0,0,0) and (0,0,0).</exception>
-        /// <returns>Returns vector of string type or -1.0 if exception occured during converting values from string to double type.</returns>
-        public double AngleBetweenVectors(Vector<string> a, Vector<string> b)
-        {
+        /// <returns>Returns the angle as double value or -1.0 if exception occured during converting values from string to double type.</returns>
+        public double AngleBetweenVectors(Vector<string> a, Vector<string> b) {
             double x1, y1, z1, x2, y2, z2;
 
-            try
-            {
+            try {
                 x1 = double.Parse(a.x);
                 y1 = double.Parse(a.y);
                 z1 = double.Parse(a.z);
                 x2 = double.Parse(b.x);
                 y2 = double.Parse(b.y);
                 z2 = double.Parse(b.z);
-            } catch (ArgumentNullException e)
-            {
+            } catch (ArgumentNullException e) {
                 return -1.0;
-            } catch (FormatException e)
-            {
+            } catch (FormatException e) {
                 return -1.0;
-            } catch (OverflowException e)
-            {
+            } catch (OverflowException e) {
                 return -1.0;
             }
 
-            if (x1 != 0.0 && y1 != 0.0 && z1 != 0.0 && x2 != 0.0 && y2 != 0.0 && z2 != 0.0)
-            {
+            if (x1 != 0.0 && y1 != 0.0 && z1 != 0.0 && x2 != 0.0 && y2 != 0.0 && z2 != 0.0) {
                 double cosinusValue = double.Parse(ScalarProduct(a, b)) / (VectorNorm(a) * VectorNorm(b));
                 return Math.Cos(cosinusValue);
             }
@@ -77,30 +69,56 @@ namespace VectorOperations {
         }
 
         /// <summary>
-        /// Distance between two vectors.
+        /// Distance between two given vectors.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
-        /// <returns>Returns vector of string type.</returns>
-        public double DistanceBetweenVectors(Vector<string> a, Vector<string> b)
-        {
+        /// <returns>Returns the distance as double value.</returns>
+        public double DistanceBetweenVectors(Vector<string> a, Vector<string> b) {
             return VectorNorm(Subtraction(a, b));
         }
 
-        public Vector<string> MultiplyWithScalar(Vector<string> vector, string scalar)
-        {
-            throw new NotImplementedException();
+        /// <summary>
+        /// Converts values of vectors to double and multiply it with scalar.
+        /// </summary>
+        /// <param name="vector">Vector of string type.</param>
+        /// <param name="scalar">Scalar of double type.</param>
+        /// <returns>Returns vector of string type or null if exception occured during converting values from string to double type.</returns>
+        public Vector<string> MultiplyWithScalar(Vector<string> vector, string scalar) {
+            double x, y, z, scalarDouble;
+
+            try
+            {
+                scalarDouble = double.Parse(scalar);
+                x = double.Parse(vector.x);
+                y = double.Parse(vector.y);
+                z = double.Parse(vector.z);
+            } catch (ArgumentNullException e)
+            {
+                return null;
+            } catch (FormatException e)
+            {
+                return null;
+            } catch (OverflowException e)
+            {
+                return null;
+            }
+
+            double newX = scalarDouble * x;
+            double newY = scalarDouble * y;
+            double newZ = scalarDouble * z;
+            return new Vector<string>(Convert.ToString(newX), Convert.ToString(newY), Convert.ToString(newZ));
+
         }
 
         /// <summary>
-        /// Orthogonality of two vectors.
+        /// Calculate orthogonality of two given vectors.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
         /// <exception cref="ArgumentException">Throws if vectors have non-numeric values.</exception>
         /// <returns>Returns true, false or ArgumentException if it occured during converting values from string to double type.</returns>
-        public bool OrthogonalityOfVectors(Vector<string> a, Vector<string> b)
-        {
+        public bool OrthogonalityOfVectors(Vector<string> a, Vector<string> b) {
             double ab;
             if (ScalarProduct(a, b) != null)
                 ab = double.Parse(ScalarProduct(a, b));
@@ -112,35 +130,34 @@ namespace VectorOperations {
         }
 
         /// <summary>
-        /// Orthogonality of three vectors.
+        /// Calculate orthogonality of three given vectors.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
         /// <param name="c">Vector of string type.</param>
         /// <returns>Returns true, false or ArgumentException if it occured during converting values from string to double type.</returns>
-
-        public bool OrthogonalityOfVectors(Vector<string> a, Vector<string> b, Vector<string> c)
-        {
-            if (OrthogonalityOfVectors(a, b) == true)
-            {
-                if (OrthogonalityOfVectors(a, c) == true)
-                {
-                    if (OrthogonalityOfVectors(b, c) == true)
-                    {
-                        return true;
+        public bool OrthogonalityOfVectors(Vector<string> a, Vector<string> b, Vector<string> c) {
+            try {
+                if (OrthogonalityOfVectors(a, b) == true) {
+                    if (OrthogonalityOfVectors(a, c) == true) {
+                        if (OrthogonalityOfVectors(b, c) == true) {
+                            return true;
+                        }
+                        else
+                            return false;
                     }
                     else
                         return false;
                 }
                 else
                     return false;
+            } catch(ArgumentException e) {
+                throw new ArgumentException();
             }
-            else
-                return false;
         }
 
         /// <summary>
-        /// Scalar product of two vectors.
+        /// Calculate scalar product of two given vectors.
         /// </summary>
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
@@ -148,22 +165,18 @@ namespace VectorOperations {
         public string ScalarProduct(Vector<string> a, Vector<string> b) {
             double x1, y1, z1, x2, y2, z2;
 
-            try
-            {
+            try {
                 x1 = double.Parse(a.x);
                 y1 = double.Parse(a.y);
                 z1 = double.Parse(a.z);
                 x2 = double.Parse(b.x);
                 y2 = double.Parse(b.y);
                 z2 = double.Parse(b.z);
-            } catch (ArgumentNullException e)
-            {
+            } catch (ArgumentNullException e) {
                 return null;
-            } catch (FormatException e)
-            {
+            } catch (FormatException e) {
                 return null;
-            } catch (OverflowException e)
-            {
+            } catch (OverflowException e) {
                 return null;
             }
 
@@ -176,26 +189,21 @@ namespace VectorOperations {
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
         /// <returns>Returns vector of string type or null, if exception occured during converting values from string to double type.</returns>
-        public Vector<string> Subtraction(Vector<string> a, Vector<string> b)
-        {
+        public Vector<string> Subtraction(Vector<string> a, Vector<string> b) {
             double x1, y1, z1, x2, y2, z2;
 
-            try
-            {
+            try {
                 x1 = double.Parse(a.x);
                 y1 = double.Parse(a.y);
                 z1 = double.Parse(a.z);
                 x2 = double.Parse(b.x);
                 y2 = double.Parse(b.y);
                 z2 = double.Parse(b.z);
-            } catch (ArgumentNullException e)
-            {
+            } catch (ArgumentNullException e) {
                 return null;
-            } catch (FormatException e)
-            {
+            } catch (FormatException e) {
                 return null;
-            } catch (OverflowException e)
-            {
+            } catch (OverflowException e) {
                 return null;
             }
 
@@ -210,23 +218,18 @@ namespace VectorOperations {
         /// </summary>
         /// <param name="vector">Vector of string type.</param>
         /// <returns>Returns vector norm or -1.0 if exceptions occured during converting values from string to double type.</returns>
-        public double VectorNorm(Vector<string> vector)
-        {
+        public double VectorNorm(Vector<string> vector) {
             double x, y, z;
 
-            try
-            {
+            try {
                 x = double.Parse(vector.x);
                 y = double.Parse(vector.y);
                 z = double.Parse(vector.z);
-            } catch (ArgumentNullException e)
-            {
+            } catch (ArgumentNullException e) {
                 return -1.0;
-            } catch (FormatException e)
-            {
+            } catch (FormatException e) {
                 return -1.0;
-            } catch (OverflowException e)
-            {
+            } catch (OverflowException e) {
                 return -1.0;
             }
 
