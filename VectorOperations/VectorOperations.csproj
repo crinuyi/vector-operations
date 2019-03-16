@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOperations.cs" />
-    <Compile Include="OperationsDouble.cs" />
-    <Compile Include="OperationsInt.cs" />
-    <Compile Include="OperationsString.cs" />
+    <Compile Include="IVectorManager.cs" />
+    <Compile Include="VectorManagerDouble.cs" />
+    <Compile Include="VectorManagerInt.cs" />
+    <Compile Include="VectorManagerString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vector.cs" />

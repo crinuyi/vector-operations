@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VectorOperations {
-    public class OperationsDouble : IVectorManager<double> {
+    public class VectorManagerDouble : IVectorManager<double> {
         /// <summary>
         /// Operation of adding given vectors.
         /// </summary>

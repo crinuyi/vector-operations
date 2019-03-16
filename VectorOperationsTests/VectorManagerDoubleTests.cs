@@ -11,7 +11,7 @@ namespace VectorOperationsTests {
     /// Unit tests of Vector<double> class.
     /// </summary>
     [TestClass]
-    public class OperationsDoubleTests {
+    public class VectorManagerDoubleTests {
         public TestContext TestContext { get; set; }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace VectorOperationsTests {
                 Convert.ToDouble(TestContext.DataRow["c2"])
                 );
 
-            OperationsDouble OperationsDouble = new OperationsDouble();
+            VectorManagerDouble OperationsDouble = new VectorManagerDouble();
             Vector<double> VECTOR_3 = OperationsDouble.Add(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual(Convert.ToDouble(TestContext.DataRow["a3"]), VECTOR_3.x);
