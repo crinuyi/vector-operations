@@ -4,72 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VectorOperations
-{
-    public class OperationsInt : IOperations<int>
-    {
+namespace VectorOperations {
+    public class OperationsInt : IOperations<int> {
         /// <summary>
-        /// Operation of adding vectors.
+        /// Operation of adding given vectors.
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
         /// <returns>Returns vector of int type.</returns>
-        public Vector<int> Add(Vector<int> a, Vector<int> b)
-        {
+        public Vector<int> Add(Vector<int> a, Vector<int> b) {
             return new Vector<int>(a.x + b.x, a.y + b.y, a.z + b.z);
         }
 
         /// <summary>
-        /// Operation of subtracting vectors.
+        /// Operation of subtracting given vectors.
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type..</param>
         /// <returns>Returns vector of int type.</returns>
-        public Vector<int> Subtraction(Vector<int> a, Vector<int> b)
-        {
+        public Vector<int> Subtraction(Vector<int> a, Vector<int> b) {
             return new Vector<int>(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
         /// <summary>
-        /// Operation of multiplying vector and scalar.
+        /// Operation of multiplying given vector and scalar.
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
         /// <returns>Returns vector of int type.</returns>
-        public Vector<int> MultiplyWithScalar(Vector<int> vector, int scalar)
-        {
+        public Vector<int> MultiplyWithScalar(Vector<int> vector, int scalar) {
             return new Vector<int>(scalar * vector.x, scalar * vector.y, scalar * vector.z);
         }
 
         /// <summary>
-        /// Scalar product of two vectors.
+        /// Scalar product of two given vectors.
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public int ScalarProduct(Vector<int> a, Vector<int> b)
-        {
+        /// <returns>Returns int value.</returns>
+        public int ScalarProduct(Vector<int> a, Vector<int> b) {
             return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
         }
 
         /// <summary>
-        /// Vector norm.
+        /// Vector norm of given vector.
         /// </summary>
         /// <param name="vector">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public double VectorNorm(Vector<int> vector)
-        {
+        /// <returns>Returns double value.</returns>
+        public double VectorNorm(Vector<int> vector) {
             return Math.Sqrt((vector.x * vector.x) + (vector.y * vector.y) + (vector.z * vector.z));
         }
 
         /// <summary>
-        /// Distance between two vectors.
+        /// Distance between two given vectors.
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public double DistanceBetweenVectors(Vector<int> a, Vector<int> b)
-        {
+        /// <returns>Returns double value.</returns>
+        public double DistanceBetweenVectors(Vector<int> a, Vector<int> b) {
             return VectorNorm(Subtraction(a, b));
         }
 
@@ -78,11 +70,10 @@ namespace VectorOperations
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public double AngleBetweenVectors(Vector<int> a, Vector<int> b)
-        {
-            if (a.x != 0 && a.y != 0 && a.z != 0 && b.x != 0 && b.y != 0 && b.z != 0)
-            {
+        /// <exception cref="ArgumentException">Thrown if given vectors are (0,0,0) and (0,0,0).</exception>
+        /// <returns>Returns double value.</returns>
+        public double AngleBetweenVectors(Vector<int> a, Vector<int> b) {
+            if (a.x != 0 && a.y != 0 && a.z != 0 && b.x != 0 && b.y != 0 && b.z != 0) {
                 double cosinusValue = ScalarProduct(a, b) / (VectorNorm(a) * VectorNorm(b));
                 return Math.Cos(cosinusValue);
             }
@@ -95,9 +86,8 @@ namespace VectorOperations
         /// </summary>
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public bool OrthogonalityOfVectors(Vector<int> a, Vector<int> b)
-        {
+        /// <returns>Returns true or false.</returns>
+        public bool OrthogonalityOfVectors(Vector<int> a, Vector<int> b) {
             int ab = ScalarProduct(a, b);
             if (ab == 0.0)
                 return true;
@@ -111,15 +101,11 @@ namespace VectorOperations
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type.</param>
         /// <param name="c">Vector of int type.</param>
-        /// <returns>Returns vector of int type.</returns>
-        public bool OrthogonalityOfVectors(Vector<int> a, Vector<int> b, Vector<int> c)
-        {
-            if (OrthogonalityOfVectors(a, b) == true)
-            {
-                if (OrthogonalityOfVectors(a, c) == true)
-                {
-                    if (OrthogonalityOfVectors(b, c) == true)
-                    {
+        /// <returns>Returns true or false.</returns>
+        public bool OrthogonalityOfVectors(Vector<int> a, Vector<int> b, Vector<int> c) {
+            if (OrthogonalityOfVectors(a, b) == true) {
+                if (OrthogonalityOfVectors(a, c) == true) {
+                    if (OrthogonalityOfVectors(b, c) == true) {
                         return true;
                     }
                     else
