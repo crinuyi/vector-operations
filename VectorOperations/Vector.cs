@@ -10,22 +10,10 @@ namespace VectorOperations {
     /// Klasa implementująca wektor w przestrzeni trójwymiarowej.
     /// Istnieje możliwość utworzenia wektoru w przestrzeni dwuwymiarowej (x, y, 0) oraz jednowymiarowej (x, 0, 0).
     /// </summary>
-    public class Vector<T> : IVector<T> {
-        internal T x;
-        internal T y;
-        internal T z;
-
-        public T GetX() {
-            return x;
-        }
-
-        public T GetY() {
-            return y;
-        }
-
-        public T GetZ() {
-            return z;
-        }
+    public class Vector<T> {
+        internal T x { get; set; }
+        internal T y { get; set; }
+        internal T z { get; set; }
 
         /// <summary> 
         /// Konstruktor wektora w przestrzeni trójwymiarowej. 

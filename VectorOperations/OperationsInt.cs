@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VectorOperations
 {
-    class OperationsInt : IOperations<int>
+    public class OperationsInt : IOperations<int>
     {
         /// <summary>
         /// Operation of adding vectors.
@@ -81,7 +81,7 @@ namespace VectorOperations
         /// <returns>Returns vector of int type.</returns>
         public double AngleBetweenVectors(Vector<int> a, Vector<int> b)
         {
-            if (a.GetX() != 0.0 && a.GetY() != 0 && a.GetZ() != 0 && b.GetX() != 0 && b.GetY() != 0 && b.GetZ() != 0)
+            if (a.x != 0 && a.y != 0 && a.z != 0 && b.x != 0 && b.y != 0 && b.z != 0)
             {
                 double cosinusValue = ScalarProduct(a, b) / (VectorNorm(a) * VectorNorm(b));
                 return Math.Cos(cosinusValue);
