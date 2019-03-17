@@ -22,7 +22,7 @@ namespace VectorOperations {
         /// <param name="a">Vector of int type.</param>
         /// <param name="b">Vector of int type..</param>
         /// <returns>Returns vector of int type.</returns>
-        public Vector<int> Subtraction(Vector<int> a, Vector<int> b) {
+        public Vector<int> Subtract(Vector<int> a, Vector<int> b) {
             return new Vector<int>(a.x - b.x, a.y - b.y, a.z - b.z);
         }
 
@@ -62,7 +62,7 @@ namespace VectorOperations {
         /// <param name="b">Vector of int type.</param>
         /// <returns>Returns double value.</returns>
         public double DistanceBetweenVectors(Vector<int> a, Vector<int> b) {
-            return VectorNorm(Subtraction(a, b));
+            return VectorNorm(Subtract(a, b));
         }
 
         /// <summary>

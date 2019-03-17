@@ -8,7 +8,7 @@ namespace VectorOperations
 {
     public interface IVectorManager<T> {
         Vector<T> Add(Vector<T> a, Vector<T> b);
-        Vector<T> Subtraction(Vector<T> a, Vector<T> b);
+        Vector<T> Subtract(Vector<T> a, Vector<T> b);
         Vector<T> MultiplyWithScalar(Vector<T> vector, T scalar);
 
         T ScalarProduct(Vector<T> a, Vector<T> b);

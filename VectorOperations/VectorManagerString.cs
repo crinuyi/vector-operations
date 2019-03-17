@@ -71,7 +71,7 @@ namespace VectorOperations {
         /// <param name="b">Vector of string type.</param>
         /// <returns>Returns the distance as double value.</returns>
         public double DistanceBetweenVectors(Vector<string> a, Vector<string> b) {
-            return VectorNorm(Subtraction(a, b));
+            return VectorNorm(Subtract(a, b));
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace VectorOperations {
         /// <param name="a">Vector of string type.</param>
         /// <param name="b">Vector of string type.</param>
         /// <returns>Returns vector of string type or null, if exception occured during converting values from string to double type.</returns>
-        public Vector<string> Subtraction(Vector<string> a, Vector<string> b) {
+        public Vector<string> Subtract(Vector<string> a, Vector<string> b) {
             Vector<double> aDouble = ConvertVector(a);
             Vector<double> bDouble = ConvertVector(b);
 
