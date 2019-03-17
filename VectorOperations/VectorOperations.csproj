@@ -44,10 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IVectorManager.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="VectorManagerDouble.cs" />
     <Compile Include="VectorManagerInt.cs" />
     <Compile Include="VectorManagerString.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vector.cs" />
   </ItemGroup>

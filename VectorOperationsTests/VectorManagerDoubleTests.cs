@@ -70,7 +70,6 @@ namespace VectorOperationsTests {
         /// </summary>
         [TestMethod]
         public void MultiplyingTest() {
-            //poprawic wartosci!
             Vector<double> VECTOR_1 = new Vector<double>(1, 2, 3);
             double SCALAR_1 = 5.34;
 
