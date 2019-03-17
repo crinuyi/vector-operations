@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VectorManagerDoubleTests.cs" />
     <Compile Include="VectorManagerIntTests.cs" />
+    <Compile Include="VectorManagerStringTests.cs" />
     <Compile Include="VectorTests.cs" />
   </ItemGroup>
   <ItemGroup>
