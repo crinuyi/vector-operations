@@ -132,10 +132,8 @@ namespace VectorOperationsTests {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AngleBetweenVectors_2Test() {
-            Vector<double> VECTOR_A = new Vector<double>(0, 0, 0);
-            Vector<double> VECTOR_B = new Vector<double>(0, 0, 0);
 
-            RESULT_DOUBLE = VectorManagerDouble.AngleBetweenVectors(VECTOR_A, VECTOR_B);
+            RESULT_DOUBLE = VectorManagerDouble.AngleBetweenVectors(VECTOR_4, VECTOR_4);
         }
 
         /// <summary>

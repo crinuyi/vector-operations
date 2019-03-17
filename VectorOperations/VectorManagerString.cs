@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VectorOperations {
-    class VectorManagerString : IVectorManager<string> {
+    public class VectorManagerString : IVectorManager<string> {
         private static Vector<double> ConvertVector(Vector<string> vector) {
             Vector<double> newVector = null;
 

@@ -10,7 +10,7 @@ namespace VectorOperationsTests {
     [TestClass]
     public class VectorTests {
         /// <summary>
-        /// Testing creating deep copy of vector.
+        /// Testing creating deep copy of vector - checking if created object isn't the same.
         /// </summary>
         [TestMethod]
         public void CopyingVectorTest() {
