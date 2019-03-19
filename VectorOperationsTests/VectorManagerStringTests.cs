@@ -36,7 +36,7 @@ namespace VectorOperationsTests {
         }
 
         /// <summary>
-        /// Testing operation of adding vectors using data-driven unit test.
+        /// Testing operation of adding vectors.
         /// </summary>
         [TestMethod]
         public void AddingTest_1() {
@@ -47,6 +47,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("10", VECTOR_RESULT.z);
         }
 
+        /// <summary>
+        /// Testing operation of adding vectors - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void Adding_Test_2() {
             VECTOR_RESULT = VectorManagerString.Add(VECTOR_1, new Vector<string>("", "2,0", "3"));
@@ -66,6 +69,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("-4", VECTOR_RESULT.z);
         }
 
+        /// <summary>
+        /// Testing operation of subtracting vectors - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void SubtractingTest_2() {
             VECTOR_RESULT = VectorManagerString.Subtract(VECTOR_1, new Vector<string>("test", "2,0", "3"));
@@ -85,6 +91,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("16,02", VECTOR_RESULT.z);
         }
 
+        /// <summary>
+        /// Testing operation of multiplying vector with scalar - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void MultiplyingTest_2() {
             VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(new Vector<string>("test", "2,0", "3"), SCALAR_1);
@@ -92,6 +101,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(null, VECTOR_RESULT);
         }
 
+        /// <summary>
+        /// Testing operation of multiplying vector with scalar - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void MultiplyingTest_3() {
             VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, "");
@@ -99,6 +111,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(null, VECTOR_RESULT);
         }
 
+        /// <summary>
+        /// Testing operation of multiplying vector with scalar - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void MultiplyingTest_4() {
             VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, null);
@@ -106,6 +121,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(null, VECTOR_RESULT);
         }
 
+        /// <summary>
+        /// Testing operation of multiplying vector with scalar - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void MultiplyingTest_5() {
             VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, "1e99999");
@@ -123,6 +141,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("9,97496867163", Convert.ToString(RESULT_DOUBLE));
         }
 
+        /// <summary>
+        /// Testing calculating vector norm - returned -1.0 because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void VectorNormTest_2() {
             RESULT_DOUBLE = VectorManagerString.VectorNorm(new Vector<string>("3", null, "3"));
@@ -140,6 +161,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("36,5", RESULT_STRING);
         }
 
+        /// <summary>
+        /// Testing calculating scalar product - returned null because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void ScalarProductTest_2() {
             RESULT_STRING = VectorManagerString.ScalarProduct(VECTOR_1, new Vector<string>("1e999999","3", "3"));
@@ -157,6 +181,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual("6,36396103067893", Convert.ToString(RESULT_DOUBLE));
         }
 
+        /// <summary>
+        /// Testing calculating distance between vectors - returned -1.0 because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void DistanceBetweenVectorsTest_2() {
             RESULT_DOUBLE = VectorManagerString.DistanceBetweenVectors(VECTOR_1, new Vector<string>("", "3", "3"));
@@ -184,6 +211,9 @@ namespace VectorOperationsTests {
             
         }
 
+        /// <summary>
+        /// Testing calculating angle between vectors - returned -1.0 because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void AngleBetweenVectors_3Test() {
             RESULT_DOUBLE = VectorManagerString.AngleBetweenVectors(VECTOR_1, new Vector<string>("", "3", "3"));
@@ -211,6 +241,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(false, RESULT_BOOL);
         }
 
+        /// <summary>
+        /// Catching ArgumentException if given vector in argument is null.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OrthogonalityOf2Vectors_3Test() {
@@ -262,6 +295,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(false, RESULT_BOOL);
         }
 
+        /// <summary>
+        /// Testing orthogonality of 3 vectors with negative result - returned false because of invalid argument.
+        /// </summary>
         [TestMethod]
         public void OrthogonalityOf3Vectors_5Test() {
             RESULT_BOOL = VectorManagerString.OrthogonalityOfVectors(
@@ -272,6 +308,9 @@ namespace VectorOperationsTests {
             Assert.AreEqual(false, RESULT_BOOL);
         }
 
+        /// <summary>
+        /// Catching ArgumentException if given vector in argument is null.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OrthogonalityOf3Vectors_6Test() {
