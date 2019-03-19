@@ -9,6 +9,8 @@ namespace VectorOperations {
         private static Vector<double> ConvertVector(Vector<string> vector) {
             Vector<double> newVector = null;
 
+            if (vector == null)
+                return null;
             try {
                 newVector = new Vector<double>(
                     double.Parse(vector.x), 
@@ -118,7 +120,7 @@ namespace VectorOperations {
             double ab;
             if (ScalarProduct(a, b) != null)
                 ab = double.Parse(ScalarProduct(a, b));
-            else throw new ArgumentException();
+            else throw new ArgumentNullException();
             if (ab == 0.0)
                 return true;
             else
@@ -147,8 +149,8 @@ namespace VectorOperations {
                 }
                 else
                     return false;
-            } catch(ArgumentException e) {
-                throw new ArgumentException();
+            } catch(ArgumentNullException e) {
+                throw new ArgumentNullException();
             }
         }
 

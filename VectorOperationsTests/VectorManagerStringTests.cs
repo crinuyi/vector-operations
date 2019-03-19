@@ -39,7 +39,7 @@ namespace VectorOperationsTests {
         /// Testing operation of adding vectors using data-driven unit test.
         /// </summary>
         [TestMethod]
-        public void AddingTest() {
+        public void AddingTest_1() {
             VECTOR_RESULT = VectorManagerString.Add(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual("5,5", VECTOR_RESULT.x);
@@ -47,11 +47,18 @@ namespace VectorOperationsTests {
             Assert.AreEqual("10", VECTOR_RESULT.z);
         }
 
+        [TestMethod]
+        public void Adding_Test_2() {
+            VECTOR_RESULT = VectorManagerString.Add(VECTOR_1, new Vector<string>("", "2,0", "3"));
+
+            Assert.AreEqual(null, VECTOR_RESULT);
+        }
+
         /// <summary>
         /// Testing operation of subtracting vectors.
         /// </summary>
         [TestMethod]
-        public void SubstractingTest() {
+        public void SubstractingTest_1() {
             VECTOR_RESULT = VectorManagerString.Subtract(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual("-3,5", VECTOR_RESULT.x);
@@ -59,16 +66,51 @@ namespace VectorOperationsTests {
             Assert.AreEqual("-4", VECTOR_RESULT.z);
         }
 
+        [TestMethod]
+        public void SubtractingTest_2() {
+            VECTOR_RESULT = VectorManagerString.Subtract(VECTOR_1, new Vector<string>("test", "2,0", "3"));
+
+            Assert.AreEqual(null, VECTOR_RESULT);
+        }
+
         /// <summary>
         /// Testing operation of multiplying vector with scalar.
         /// </summary>
         [TestMethod]
-        public void MultiplyingTest() {
+        public void MultiplyingTest_1() {
             VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, SCALAR_1);
 
             Assert.AreEqual("5,34", VECTOR_RESULT.x);
             Assert.AreEqual("10,68", VECTOR_RESULT.y);
             Assert.AreEqual("16,02", VECTOR_RESULT.z);
+        }
+
+        [TestMethod]
+        public void MultiplyingTest_2() {
+            VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(new Vector<string>("test", "2,0", "3"), SCALAR_1);
+
+            Assert.AreEqual(null, VECTOR_RESULT);
+        }
+
+        [TestMethod]
+        public void MultiplyingTest_3() {
+            VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, "");
+
+            Assert.AreEqual(null, VECTOR_RESULT);
+        }
+
+        [TestMethod]
+        public void MultiplyingTest_4() {
+            VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, null);
+
+            Assert.AreEqual(null, VECTOR_RESULT);
+        }
+
+        [TestMethod]
+        public void MultiplyingTest_5() {
+            VECTOR_RESULT = VectorManagerString.MultiplyWithScalar(VECTOR_1, "1e99999");
+
+            Assert.AreEqual(null, VECTOR_RESULT);
         }
 
         /// <summary>
@@ -81,24 +123,45 @@ namespace VectorOperationsTests {
             Assert.AreEqual("9,97496867163", Convert.ToString(RESULT_DOUBLE));
         }
 
+        [TestMethod]
+        public void VectorNormTest_2() {
+            RESULT_DOUBLE = VectorManagerString.VectorNorm(new Vector<string>("3", null, "3"));
+
+            Assert.AreEqual(-1, RESULT_DOUBLE);
+        }
+
         /// <summary>
         /// Testing calculating scalar product.
         /// </summary>
         [TestMethod]
-        public void ScalarProductTest() {
+        public void ScalarProductTest_1() {
             RESULT_STRING = VectorManagerString.ScalarProduct(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual("36,5", RESULT_STRING);
+        }
+
+        [TestMethod]
+        public void ScalarProductTest_2() {
+            RESULT_STRING = VectorManagerString.ScalarProduct(VECTOR_1, new Vector<string>("1e999999","3", "3"));
+
+            Assert.AreEqual(null, RESULT_STRING);
         }
 
         /// <summary>
         /// Testing calculating distance between vectors.
         /// </summary>
         [TestMethod]
-        public void DistanceBetweenVectorsTest() {
+        public void DistanceBetweenVectorsTest_1() {
             RESULT_DOUBLE = VectorManagerString.DistanceBetweenVectors(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual("6,36396103067893", Convert.ToString(RESULT_DOUBLE));
+        }
+
+        [TestMethod]
+        public void DistanceBetweenVectorsTest_2() {
+            RESULT_DOUBLE = VectorManagerString.DistanceBetweenVectors(VECTOR_1, new Vector<string>("", "3", "3"));
+
+            Assert.AreEqual(-1.0, RESULT_DOUBLE);
         }
 
         /// <summary>
@@ -117,8 +180,15 @@ namespace VectorOperationsTests {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void AngleBetweenVectors_2Test() {
-
             RESULT_DOUBLE = VectorManagerString.AngleBetweenVectors(VECTOR_4, VECTOR_4);
+            
+        }
+
+        [TestMethod]
+        public void AngleBetweenVectors_3Test() {
+            RESULT_DOUBLE = VectorManagerString.AngleBetweenVectors(VECTOR_1, new Vector<string>("", "3", "3"));
+
+            Assert.AreEqual(-1, RESULT_DOUBLE);
         }
 
         /// <summary>
@@ -135,10 +205,16 @@ namespace VectorOperationsTests {
         /// Testing orthogonality of 2 vectors with negative result.
         /// </summary>
         [TestMethod]
-        public void OrthogonalityOfVectors_2Test() {
+        public void OrthogonalityOf2Vectors_2Test() {
             RESULT_BOOL = VectorManagerString.OrthogonalityOfVectors(VECTOR_1, VECTOR_2);
 
             Assert.AreEqual(false, RESULT_BOOL);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OrthogonalityOf2Vectors_3Test() {
+            RESULT_BOOL = VectorManagerString.OrthogonalityOfVectors(null, VECTOR_2);
         }
 
         /// <summary>
@@ -184,6 +260,22 @@ namespace VectorOperationsTests {
                 new Vector<string>("1,0", "0,0", "0,0"),
                 new Vector<string>("-1,0", "0,0", "0,0"));
             Assert.AreEqual(false, RESULT_BOOL);
+        }
+
+        [TestMethod]
+        public void OrthogonalityOf3Vectors_5Test() {
+            RESULT_BOOL = VectorManagerString.OrthogonalityOfVectors(
+                VECTOR_1, 
+                VECTOR_2,
+                new Vector<string>("", "3", "3"));
+
+            Assert.AreEqual(false, RESULT_BOOL);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void OrthogonalityOf3Vectors_6Test() {
+            RESULT_BOOL = VectorManagerString.OrthogonalityOfVectors(null, VECTOR_2, VECTOR_3);
         }
     }
 }
