@@ -158,7 +158,7 @@ namespace VectorOperationsTests {
         public void ScalarProductTest_1() {
             RESULT_STRING = VectorManagerString.ScalarProduct(VECTOR_1, VECTOR_2);
 
-            Assert.AreEqual("36,5", RESULT_STRING);
+            StringAssert.Contains("36,5", RESULT_STRING);
         }
 
         /// <summary>
