@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VectorOperations {
     public class VectorManagerString : IVectorManager<string> {
-        private static Vector<double> ConvertVector(Vector<string> vector) {
+        public static Vector<double> ConvertVector(Vector<string> vector) {
             Vector<double> newVector = null;
 
             if (vector == null)
